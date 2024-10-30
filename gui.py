@@ -2,9 +2,17 @@ import tkinter as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
+k_padx = 5
+k_pady = 5
+label_font = ("Helvetica", 10, "bold") 
+entry_font = ("Helvetica", 10) 
+label_bg = "#f5efff" #Light purple 
+entry_bg = "#f0f0f0" # White
+
 def setup_gui(root):
     root.title("Calculadora de Tiro Parabolico")
-    root.geometry("800x600")
+    root.geometry("1000x450")
+    root.configure(bg=label_bg)
 
     inputs = [ 
        ("Projectile Mass (kg):", 1), 
@@ -21,22 +29,31 @@ def setup_gui(root):
 
     entries = []
 
-    for entry_label, default_value in inputs:
-        label = tk.Label(root, text=entry_label)
-        label.pack()
-        entry = tk.Entry(root)
+    input_frame = tk.Frame()
+    input_frame.configure(bg=label_bg)
+    input_frame.grid(row=0, column=0, padx=k_padx, pady=k_pady)
+
+    for i, (entry_label, default_value) in enumerate(inputs):
+        # column for labels
+        label = tk.Label(input_frame, text=entry_label, bg=label_bg)
+        label.grid(row=i, column = 0, padx = k_padx, pady= k_pady, sticky="e")
+        
+        #column for entries
+        entry = tk.Entry(input_frame, bg=entry_bg)
         entry.insert(0, default_value)
-        entry.pack()
+        entry.grid(row=i, column=1, padx=k_padx, pady=k_pady)
+        
         entries.append(entry)
     
-    #fig = Figure(figsize=(5, 4), dpi=100) 
-    #plot = fig.add_subplot(1, 1, 0)
-    fig, plot = 0, 0
+    fig = Figure(figsize=(5, 4), dpi=100) 
+    plot = fig.add_subplot(1, 1, 1)
+    # fig, plot = 0, 0
 
-    #canvas = FigureCanvasTkAgg(fig, master=root) 
-    #canvas.get_tk_widget().pack()
+    plot_frame = tk.Frame()
+    plot_frame.configure(bg=label_bg)
+    plot_frame.grid(row=0, column=1, padx=k_padx, pady=k_pady)
 
-    results_label = tk.Label(root, text="Results: ...make a calculation")
-    results_label.pack()
+    canvas = FigureCanvasTkAgg(fig, master=plot_frame) 
+    canvas.get_tk_widget().pack(pady=k_pady)
 
-    return entries, fig, plot, results_label, [default for _, default in inputs]
+    return entries, fig, plot, [default for _, default in inputs]

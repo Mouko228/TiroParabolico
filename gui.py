@@ -1,6 +1,7 @@
 import tkinter as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import numpy as np
 
 k_padx = 5
 k_pady = 5

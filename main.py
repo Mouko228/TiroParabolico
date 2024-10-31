@@ -1,6 +1,7 @@
 # DEPENDENCIES --------------- developer notes
 # 1. Tkinter (main, gui) ..... pip install tk
 # 2. Matplotlib (gui) ........ pip install matplotlib
+# 3. Numpy (backend, gui) .... pip install numpy
 
 import tkinter as tk
 from gui import setup_gui

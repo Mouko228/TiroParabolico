@@ -7,7 +7,7 @@ k_padx = 5
 k_pady = 5
 label_font = ("Helvetica", 10, "bold") 
 entry_font = ("Helvetica", 10) 
-label_bg = "#f5efff" #Light purple 
+label_bg = "#f7f7ff" # 
 entry_bg = "#f0f0f0" # White
 
 def setup_gui(root):
@@ -46,15 +46,15 @@ def setup_gui(root):
         
         entries.append(entry)
     
-    fig = Figure(figsize=(5, 4), dpi=100) 
-    plot = fig.add_subplot(1, 1, 1)
-    # fig, plot = 0, 0
-
+    # Plot --------------------------
     plot_frame = tk.Frame()
     plot_frame.configure(bg=label_bg)
     plot_frame.grid(row=0, column=1, padx=k_padx, pady=k_pady)
+    
+    fig = Figure(figsize=(5, 4), dpi=100) 
+    plot = fig.add_subplot(1, 1, 1)
 
     canvas = FigureCanvasTkAgg(fig, master=plot_frame) 
     canvas.get_tk_widget().pack(pady=k_pady)
 
-    return entries, fig, plot, [default for _, default in inputs]
+    return entries, fig, plot, canvas, [default for _, default in inputs]

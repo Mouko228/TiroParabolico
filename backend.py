@@ -23,7 +23,7 @@ def parabola(x1,y1,x2,y2,x3,y3,mass,k_spring,g):
   # find tangent of parabola with d/dx of ax^2 + bx + c
   # evaluate d/dx f(x) at x0 -> theta = tan-1(f'(x))
   dx0 = 2*a*(x1) +b
-  theta = math.degrees(math.atan(math.radians(dx0))) 
+  theta = math.degrees(math.atan(dx0)) 
 
 # -----------Step three (Find V0)
   # find V0 with h,k using sqrt((2g*k)/sin(theta))
